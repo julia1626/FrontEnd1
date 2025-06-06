@@ -12,6 +12,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { PainelVagasComponent } from './view/painel-vagas/painel-vagas.component';
 import { FormsModule } from '@angular/forms';
+import { CurriculoFormComponent } from './view/curriculo-form/curriculo-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -22,8 +25,16 @@ import { FormsModule } from '@angular/forms';
     HeaderComponent,
     FooterComponent,
     PainelVagasComponent,
+    CurriculoFormComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, NgbModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgbModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

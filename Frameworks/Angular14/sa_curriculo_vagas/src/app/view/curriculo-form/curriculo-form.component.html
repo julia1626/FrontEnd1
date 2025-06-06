@@ -1,0 +1,52 @@
+<h2>{{ curriculoId ? 'Editar Currículo' : 'Cadastrar Currículo' }}</h2>
+<form [formGroup]="curriculoForm" (ngSubmit)="onSubmit()">
+  <label>Formação</label>
+  <input type="text" name="formacao" formControlName="formacao" /><br />
+
+  <label>Experiência</label>
+  <textarea name="experiencia" formControlName="experiencia" [(ngModel)]="curriculo.experiencia"></textarea><br />
+
+  <label>Habilidades</label>
+  <textarea name="habilidades" formControlName="habilidades"></textarea><br />
+
+  <label>LinkedIn</label>
+  <textarea name="habilidades" formControlName="linkedin"></textarea><br />
+
+  <button type="submit" [disabled]="curriculoForm.invalid">
+    {{ curriculoId ? 'Atualizar' : 'Cadastrar' }}
+  </button>
+</form>
+
+<section class="lista-curriculos">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Código do Currículo</th>
+        <th>Formação</th>
+        <th>Experiência</th>
+        <th>Habilidades</th>
+        <th>LinkedIn</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let curriculo of curriculos" class="curriculo-row">
+        <td>{{ curriculo.id }}</td>
+        <td>{{ curriculo.formacao }}</td>
+        <td>{{ curriculo.experiencia }}</td>
+        <td>{{ curriculo.habilidades }}</td>
+        <td>{{ curriculo.linkedin }}</td>
+        <td>
+          <button type="button" (click)="listarCurriculoUnico(curriculo)" class="btn-listar">
+            Listar
+          </button>
+
+          <button type="button" (click)="excluir(curriculo.id)" class="btn-excluir">
+            Excluir
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="rodape"></div>

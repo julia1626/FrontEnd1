@@ -5,34 +5,40 @@ import { VagaService } from 'src/app/service/vaga.service';
 @Component({
   selector: 'app-vagas',
   templateUrl: './vagas.component.html',
-  styleUrls: ['./vagas.component.scss']
+  styleUrls: ['./vagas.component.scss'],
 })
-export class VagasComponent implements OnInit{
-  public vagas: Vaga[] =[]; //vetor para armazenar as vagas
+export class VagasComponent implements OnInit {
+  excluir(arg0: number) {
+    throw new Error('Método errado');
+  }
+  public vagas: Vaga[] = []; // vetor para armazenar as vagas
 
-  constructor (private _vagasService : VagaService){}
-  //Injetando o seviço de vagas no construtor do componente
+  constructor(private vagaService: VagaService) {}
 
+  // Ao iniciar o componente, listar as vagas
   ngOnInit(): void {
     this.listarVagas();
   }
 
-  listarVagas(){
-    this._vagasService.getVagas().subscribe(
-      (retornaVaga) => {
-        //mapear os dados da API
-        this.vagas = retornaVaga.map(
-          (item) => {
-            return new Vaga(
-              item.id,
-              item.nome,
-              item.foto,
-              item.descricao,
-              item.salario
-            );
-          }
+  listarVagas(): void {
+    this.vagaService.getVagas().subscribe({
+      next: (retorno: Vaga[]) => {
+        this.vagas = retorno.map(
+          (v) => new Vaga(v.id, v.nome, v.foto, v.descricao, v.salario)
         );
-      }
-    );
+      },
+      error: (err) => {
+        console.error('Erro ao buscar vagas:', err);
+      },
+    });
+  }
+
+  carregarVagas(): void {
+    this.vagaService.getVagas().subscribe({
+      next: (dados) => {
+        this.vagas = dados;
+      },
+      error: (err) => console.error('Erro ao carregar vagas:', err),
+    });
   }
 }
