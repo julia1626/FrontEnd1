@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CurriculoService } from '../../service/curriculo.service';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Curriculo } from 'src/app/models/curriculo.model';
 
 @Component({
@@ -11,72 +9,66 @@ import { Curriculo } from 'src/app/models/curriculo.model';
 })
 export class CurriculoFormComponent implements OnInit {
 
-  // atributo
-  public curriculo : Curriculo = new Curriculo(0,'','','','',0);
-  
-excluir(arg0: number|undefined) {
-throw new Error('Method not implemented.');
-}
-listarCurriculoUnico(_t44: Curriculo) {
-throw new Error('Method not implemented.');
-}
-  curriculoForm: FormGroup;
-  curriculoId?: number;
-  curriculos: Curriculo[] = [];
+  public curriculo: Curriculo = new Curriculo(0, 0, '', '', '', '');
+  public curriculos: Curriculo[] = [];
 
-  constructor(
-    private fb: FormBuilder,
-    private curriculoService: CurriculoService,
-    private route: ActivatedRoute,
-    private router: Router
-  ) {
-    // Definição do formulário com validações
-    this.curriculoForm = this.fb.group({
-      usuarioId: [1, Validators.required], // Simulando usuário logado
-      formacao: ['', Validators.required],
-      experiencia: ['', Validators.required],
-      habilidades: ['', Validators.required],
-      linkedin: [
-        '',
-        [Validators.required, Validators.pattern(/^https?:\/\/.+/)],
-      ],
+  constructor(private curriculoService: CurriculoService) {}
+
+  ngOnInit(): void {
+    this.listarCurriculos();
+  }
+
+  listarCurriculos() {
+    this.curriculoService.getCurriculos().subscribe((retornaCurriculo) => {
+      this.curriculos = retornaCurriculo.map((curriculo) => {
+        return new Curriculo(
+          curriculo.id,
+          curriculo.usuarioId,
+          curriculo.formacao,
+          curriculo.experiencia,
+          curriculo.habilidades,
+          curriculo.linkedin
+        );
+      });
     });
   }
 
-  ngOnInit(): void {
-    // Obtendo o ID do currículo da URL de forma segura
-    const idParam = this.route.snapshot.paramMap.get('id');
-    this.curriculoId = idParam ? +idParam : undefined;
-
-    if (this.curriculoId) {
-      this.curriculoService
-        .getCurriculoById(this.curriculoId)
-        .subscribe((curriculo) => {
-          if (curriculo) {
-            this.curriculoForm.patchValue(curriculo);
-          }
-        });
-    }
+  listarCurriculoUnico(curriculo: Curriculo) {
+    this.curriculo = curriculo;
   }
 
-  onSubmit(): void {
-    if (this.curriculoForm.valid) {
-      const curriculo: Curriculo = Object.assign({}, this.curriculoForm.value);
-
-      if (this.curriculoId) {
-        curriculo.id = this.curriculoId;
-        this.curriculoService
-          .atualizarCurriculo(curriculo.id, curriculo)
-          .subscribe(() => {
-            alert('Currículo atualizado com sucesso!');
-            this.router.navigate(['/meu-curriculo']);
-          });
-      } else {
-        this.curriculoService.cadastrarCurriculo(curriculo).subscribe(() => {
-          alert('Currículo cadastrado com sucesso!');
-          this.router.navigate(['/meu-curriculo']);
-        });
+  cadastrar() {
+    this.curriculoService.cadastrarCurriculo(this.curriculo).subscribe(
+      () => {
+        this.curriculo = new Curriculo(0, 0, '', '', '', ''); // limpa o formulário
+        this.listarCurriculos(); // atualiza a lista
+      },
+      (err) => {
+        console.error('Erro ao Cadastrar', err);
       }
-    }
+    );
+  }
+
+  atualizar(id: number) {
+    this.curriculoService.atualizarCurriculo(id, this.curriculo).subscribe(
+      () => {
+        this.curriculo = new Curriculo(0, 0, '', '', '', '');
+        this.listarCurriculos();
+      },
+      (err) => {
+        console.error('Erro ao Atualizar', err);
+      }
+    );
+  }
+
+  excluir(id: number) {
+    this.curriculoService.excluirCurriculo(id).subscribe(
+      () => {
+        this.listarCurriculos(); // Atualiza a lista após exclusão
+      },
+      (err) => {
+        console.error('Erro ao Excluir', err);
+      }
+    );
   }
 }

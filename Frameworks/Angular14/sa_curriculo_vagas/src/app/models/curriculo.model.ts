@@ -1,5 +1,5 @@
 export class Curriculo {
-  id?: number;
+  id: number =0;
   usuarioId: number;
   formacao: string;
   experiencia: string;
@@ -7,18 +7,18 @@ export class Curriculo {
   linkedin: string;
 
   constructor(
+    id: number,
     usuarioId: number,
     formacao: string,
     experiencia: string,
     habilidades: string,
     linkedin: string,
-    id?: number
   ) {
+    this.id = id;
     this.usuarioId = usuarioId;
     this.formacao = formacao;
     this.experiencia = experiencia;
     this.habilidades = habilidades;
     this.linkedin = linkedin;
-    this.id = id;
   }
 }

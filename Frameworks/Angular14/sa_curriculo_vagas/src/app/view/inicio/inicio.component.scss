@@ -1,0 +1,28 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #e6f0fa;
+    /* azul pastel de fundo */
+    color: #2e4a62;
+}
+
+.container {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #ffffff;
+    margin: 50px auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+}
+
+h1 {
+    font-size: 2.5em;
+    color: #3c6fa6;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.2em;
+    color: #4d6275;
+}

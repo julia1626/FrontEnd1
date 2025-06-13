@@ -1,25 +1,64 @@
 {
   "vagas": [
     {
-      "id": 1,
+      "id": "1",
       "nome": "Desenvolver FrontEnd Jr",
       "foto": "foto1.jpg",
       "descricao": "Trabalhar com HTML, CSS e JS",
       "salario": 4000
     },
     {
-      "id": 2,
+      "id": "2",
       "nome": "Desenvolver BackEnd Pleno",
       "foto": "foto2.jpg",
-      "descricao": "Trabalhar com Desenvolvimento Web",
+      "descricao": "Trabalhar com Desenvolvimento Web e javascrip",
       "salario": 7000
     },
     {
-      "id": 3,
-      "nome": "Desenvolver Fullstack Senior",
-      "foto": "foto3.jpg",
-      "descricao": "Trabalhar com Desenvolvimento Web",
-      "salario": 10000
+      "id": 0,
+      "nome": "Desenvolvedor Full-Stack",
+      "foto": "",
+      "descricao": "trabalhar com front end e back end",
+      "salario": "80000"
+    },
+    {
+      "id": "4",
+      "nome": "Desenvolver BackEnd Junior",
+      "foto": "",
+      "descricao": "Web. html",
+      "salario": "3000"
+    },
+    {
+      "id": "3",
+      "nome": "Desenvolvedor Full-Stack",
+      "foto": "",
+      "descricao": "trabalhar com front end e back end",
+      "salario": "80000"
+    },
+    {
+      "id": "",
+      "nome": "",
+      "foto": "",
+      "descricao": "",
+      "salario": ""
+    }
+  ],
+  "curriculos": [
+    {
+      "id": "2",
+      "formacao": "front",
+      "experiencia": "desenvolvimento web",
+      "habilidades": "TI",
+      "linkedin": "ssss",
+      "usuarioId": "1"
+    },
+    {
+      "id": 0,
+      "usuarioId": 0,
+      "formacao": "ti",
+      "experiencia": "desenvolvimento",
+      "habilidades": "backend",
+      "linkedin": "htt"
     }
   ]
 }

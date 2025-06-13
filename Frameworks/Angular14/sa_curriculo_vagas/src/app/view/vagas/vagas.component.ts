@@ -8,9 +8,6 @@ import { VagaService } from 'src/app/service/vaga.service';
   styleUrls: ['./vagas.component.scss'],
 })
 export class VagasComponent implements OnInit {
-  excluir(arg0: number) {
-    throw new Error('Método errado');
-  }
   public vagas: Vaga[] = []; // vetor para armazenar as vagas
 
   constructor(private vagaService: VagaService) {}

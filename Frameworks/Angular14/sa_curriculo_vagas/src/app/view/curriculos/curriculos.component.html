@@ -1,5 +1,4 @@
 <section class="lista-curriculos d-flex flex-wrap gap-3">
-  <!-- Loop que percorre cada objeto 'curriculo' na lista -->
   <div *ngFor="let curriculo of curriculos">
     <div class="card" style="width: 18rem">
       <div class="card-body">
@@ -7,10 +6,7 @@
         <h5 class="card-title">Formação: {{ curriculo.formacao }}</h5>
         <p class="card-text">Experiência: {{ curriculo.experiencia }}</p>
         <p class="card-text">Habilidades: {{ curriculo.habilidades }}</p>
-        <p class="card-text">
-          LinkedIn:
-          <a [href]="curriculo.linkedin" target="_blank">Perfil</a>
-        </p>
+        <p class="card-text">LinkedIn: {{curriculo.linkedin}}</p>
       </div>
     </div>
   </div>

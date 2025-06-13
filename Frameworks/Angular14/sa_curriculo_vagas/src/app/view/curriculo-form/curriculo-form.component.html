@@ -1,20 +1,23 @@
-<h2>{{ curriculoId ? 'Editar Currículo' : 'Cadastrar Currículo' }}</h2>
-<form [formGroup]="curriculoForm" (ngSubmit)="onSubmit()">
+<h2>Cadastrar Currículo</h2>
+<form>
   <label>Formação</label>
-  <input type="text" name="formacao" formControlName="formacao" /><br />
+  <input type="text" name="formacao" [(ngModel)]="curriculo.formacao" /><br />
 
   <label>Experiência</label>
-  <textarea name="experiencia" formControlName="experiencia" [(ngModel)]="curriculo.experiencia"></textarea><br />
+  <textarea name="experiencia" [(ngModel)]="curriculo.experiencia"></textarea><br />
 
   <label>Habilidades</label>
-  <textarea name="habilidades" formControlName="habilidades"></textarea><br />
+  <textarea name="habilidades" [(ngModel)]="curriculo.habilidades"></textarea><br />
 
   <label>LinkedIn</label>
-  <textarea name="habilidades" formControlName="linkedin"></textarea><br />
+  <textarea name="linkedin" [(ngModel)]="curriculo.linkedin"></textarea><br />
 
-  <button type="submit" [disabled]="curriculoForm.invalid">
-    {{ curriculoId ? 'Atualizar' : 'Cadastrar' }}
-  </button>
+  <label>Usuário ID</label>
+<input type="number" name="usuarioId" [(ngModel)]="curriculo.usuarioId" /><br />
+
+ <button type="button" (click)="cadastrar()">Cadastrar curriculo</button>
+ <button type="button" (click)="excluir(curriculo.id)">Excluir curriculo</button>
+  <button type="button" (click)="atualizar(curriculo.id)">Atualizar curriculo</button>
 </form>
 
 <section class="lista-curriculos">
@@ -38,10 +41,6 @@
         <td>
           <button type="button" (click)="listarCurriculoUnico(curriculo)" class="btn-listar">
             Listar
-          </button>
-
-          <button type="button" (click)="excluir(curriculo.id)" class="btn-excluir">
-            Excluir
           </button>
         </td>
       </tr>

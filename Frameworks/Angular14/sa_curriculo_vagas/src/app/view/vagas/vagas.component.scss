@@ -1,9 +1,95 @@
-.lista-vagas {
-  display: flex;
-  flex-direction: row;
+:host {
+  display: block;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #e6f0fa;
+  /* Azul bem clarinho */
+  color: #2e4a62;
+  /* Azul escuro para contraste */
 }
 
+/* Título */
+h2 {
+  text-align: center;
+  color: #35658f;
+  margin-bottom: 20px;
+}
+
+/* Lista de vagas */
+.lista-vagas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Cartão individual */
 .lista-vagas .card {
-  margin: 5px 10px;
-  min-height: 500 px;
+  background-color: #d0e7ff;
+  /* Azul pastel */
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  width: 320px;
+  padding: 20px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
+}
+
+.lista-vagas .card:hover {
+  transform: translateY(-5px);
+}
+
+/* Título e descrição */
+.lista-vagas .card h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #2e4a62;
+}
+
+.lista-vagas .card p {
+  font-size: 14px;
+  color: #3e5f7c;
+  margin-bottom: 8px;
+}
+
+/* Salário */
+.lista-vagas .card .salario {
+  font-weight: bold;
+  color: #3d8fd9;
+  margin-bottom: 12px;
+}
+
+/* Botões */
+.lista-vagas .card button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 8px;
+  transition: background-color 0.3s ease;
+}
+
+/* Botão de listar */
+.lista-vagas .card .btn-listar {
+  background-color: #7ab8f5;
+  color: white;
+}
+
+/* Botão de excluir */
+.lista-vagas .card .btn-excluir {
+  background-color: #f57b7b;
+  color: white;
+}
+
+.lista-vagas .card button:hover {
+  background-color: #5aa2e6;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .lista-vagas {
+    flex-direction: column;
+    align-items: center;
+  }
 }

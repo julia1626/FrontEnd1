@@ -66,15 +66,4 @@ export class PainelVagasComponent implements OnInit {
       }
     )
   }
-
-  excluir(id: number){
-    this._vagasService.removerVaga(id).subscribe(
-      ()=> {
-        this.vaga = new Vaga(0,"","","",0);
-      },
-      (err) => {
-        console.error("Erro ao Excluir", err);
-      }
-    );
-  }
 }
