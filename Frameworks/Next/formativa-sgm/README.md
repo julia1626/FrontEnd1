@@ -111,8 +111,8 @@ com as funcionalidades do sistema
             caso5([Acessar o DashBoard])
         end
 
-        Tecnico([Técnico de Manutenção])
-        Gerente([Gerente de Manutenção])
+        Tecnico([👩‍🔧Técnico de Manutenção])
+        Gerente([👩‍💼Gerente de Manutenção])
         Admin([Administrador do Sistema])
 
         Tecnico --> caso1
@@ -134,3 +134,26 @@ com as funcionalidades do sistema
         caso1 -.-> caso5
     
     ```
+
+    3. ### Fluxo
+Detalha o passo a passo para realizar uma ação no sistema
+
+- Diagrama de fluxo de Login
+    - O usuário acessa a tela de login
+    - Insere as credenciais
+    - O sistema verifica as credenciais 
+        - se sim: gera um JWT (Token) => DashBoard
+        - se não: manda uma mensagem de erro - permanece na tela de Login
+
+```mermaid
+
+graph TD
+    A[Início] --> B{Acessa a Tela de Login}
+    B --> C[Preencher Email e Senha]
+    C --> D{Validar as Credenciais}
+    D --> SIM --> E[Gerar um Token JWT]
+    E --> F[DashBoard]
+    D --> Não --> G[Mensagem de Erro]
+    G --> B
+
+```
