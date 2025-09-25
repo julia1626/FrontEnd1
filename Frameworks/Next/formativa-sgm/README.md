@@ -93,7 +93,7 @@ Ilustra as interações dos direferntes tipos de usários (Atores)
 com as funcionalidades do sistema
 
 - Caso de Uso:
-    - Técnico: Gerenciar Ordes de Serviço (CRUD) e acessar o Dashboard
+    - Técnico: Gerenciar Ordens de Serviço (CRUD) e acessar o Dashboard
     - Gerente: funções do técnico + gerenciamento de Equipamentos (CRUD);
     - Admin: Gerenciar Usuários do Sistema, acessar o Dashboard
 
@@ -116,7 +116,7 @@ com as funcionalidades do sistema
         Admin([Administrador do Sistema])
 
         Tecnico --> caso1
-        Tecnico --> caso3
+        Tecnico --> caso2
         Tecnico --> caso5
 
         Gerente --> caso1
