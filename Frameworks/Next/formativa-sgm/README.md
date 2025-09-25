@@ -36,7 +36,7 @@ O projeto consiste no desenvolvimento de um Sistema de Gestão de Manutenção (
 
 1. ### Classe
 Descrever o comportamento das Entidades de um projeto
-
+    
     -Usuários (User/Usuario)
         - Atributos: id, nome, email, senha, função
         - Métodos: create, read, update, delete, login, logout
@@ -86,4 +86,51 @@ classDiagram
 
     Usuario "1"--"1+" OrdemServico: "é responsável por"
     Equipamento "1"--"1+" OrdemServico: "associada a"
+
 ```
+2. ### Casos de Uso
+Ilustra as interações dos direferntes tipos de usários (Atores)
+com as funcionalidades do sistema
+
+- Caso de Uso:
+    - Técnico: Gerenciar Ordes de Serviço (CRUD) e acessar o Dashboard
+    - Gerente: funções do técnico + gerenciamento de Equipamentos (CRUD);
+    - Admin: Gerenciar Usuários do Sistema, acessar o Dashboard
+
+    Fazer o login -> Antes de Qualquer Ação 
+
+    ```mermaid
+
+    graph TD
+
+        subgraph "SGM"
+            caso1([Fazer Login])
+            caso2([Gerenciar Ordens de Serviço - CRUD])
+            caso3([Gerenciar Equipamentos - CRUD])
+            caso4([Gerenciar Usuários])
+            caso5([Acessar o DashBoard])
+        end
+
+        Tecnico([Técnico de Manutenção])
+        Gerente([Gerente de Manutenção])
+        Admin([Administrador do Sistema])
+
+        Tecnico --> caso1
+        Tecnico --> caso3
+        Tecnico --> caso5
+
+        Gerente --> caso1
+        Gerente --> caso2
+        Gerente --> caso3
+        Gerente --> caso5
+
+        Admin --> caso1
+        Admin --> caso4
+        Admin --> caso5
+
+        caso1 -.-> caso2
+        caso1 -.-> caso3
+        caso1 -.-> caso4
+        caso1 -.-> caso5
+    
+    ```
