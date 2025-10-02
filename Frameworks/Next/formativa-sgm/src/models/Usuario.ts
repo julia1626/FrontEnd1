@@ -7,16 +7,18 @@ export interface IUsuario extends Document{
     _id: string;
     nome:string;
     email:string;
-    senha:string;
+    senha?:string; //permite que a senha retorne null
     funcao:string;
+    compareSenha(senhaUsuario:string): Promise<boolean>;
+    //devolve para o usuário apenas a booleana de comparação da senha
 }
 
 
-
+//schema -> construtor
 const UsuarioSchema:Schema<IUsuario> = new Schema({
     nome: {type: String, required: true},
     email: {type: String, required: true, unique:true},
-    senha: {type: String, required: true},
+    senha: {type: String, required: true, select:false}, //select false para não retornar a senha nas consultas
     funcao: {type: String, enum:[
         "tecnico","gerente","admin"
     ], required:true}
@@ -34,13 +36,18 @@ UsuarioSchema.pre<IUsuario>('save', async function (next) {
         this.senha = await bcrypt.hash(this.senha, salt);
         // salva a senha criptografada
         next();
-    } catch (error:any) {
+    } catch (error: any) {
         next(error);
     }
     
 })
 
 // método para compara senhas
+//quando faz login (compara a senha digitada e criptografada com a senha criptografada do banco)
+UsuarioSchema.methods.compareSenha = function (senhaUsuario:string): 
+Promise<boolean> {
+    return bcrypt.compare(senhaUsuario, this.senha);
+}
 
 
 
